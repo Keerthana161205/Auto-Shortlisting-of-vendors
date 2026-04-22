@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendor Shortlist | BHEL</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 { color: #00529b; margin-bottom: 25px; }
+        .filter-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .filter-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        th { background-color: #00529b; color: white; padding: 15px; text-transform: uppercase; font-size: 13px; }
+        td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: center; }
+        tr:hover { background-color: #f1f7ff; }
+        .add-link {
+            margin-bottom: 15px;
+            background: #00529b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Auto Short Listing Dashboard</h2>
+    
+    <a href="/add_vendor" class="add-link">+ Add New Vendor</a>
+
+    <form method="POST" class="filter-card">
+        <strong>Shortlist Criteria:</strong>
+        <input type="number" step="0.1" name="min_rating" placeholder="Min Rating">
+        <input type="number" name="max_load" placeholder="Max Load">
+        <input type="date" name="max_date">
+        <button type="submit" class="filter-btn">Apply Automation</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Vendor Name</th>
+                <th>Rating</th>
+                <th>Workload</th>
+                <th>Delivery</th>
+                <th>Machine</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vendor in vendors %}
+            <tr>
+                <td><strong>{{ vendor[0] }}</strong></td>
+                <td style="color: #28a745; font-weight: bold;">{{ vendor[1] }} ★</td>
+                <td>{{ vendor[2] }}</td>
+                <td>{{ vendor[3] }}</td>
+                <td>{{ vendor[4] }}</td>
+                <td>{{ vendor[5] }}</td>
+                <td>{{ vendor[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
